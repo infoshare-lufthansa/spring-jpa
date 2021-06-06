@@ -40,3 +40,5 @@ values (1,
         'With his wife''s disappearance having become the focus of an intense media circus, a man sees the spotlight turned on him when it''s suspected that he may not be innocent.',
         '1962-08-28', 'David', 'Fincher', 8940000000000, 'THRILLER', '2014-10-10', 8.10,
         'https://thumbnails.com/gone-girl', 'Gone Girl');
+
+alter sequence hibernate_sequence restart with 11;
