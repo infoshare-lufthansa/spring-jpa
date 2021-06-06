@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import pl.infoshare.jpa.screens.aspots.ASpotCreateService;
 import pl.infoshare.jpa.screens.aspots.model.ASpotRepository;
+import pl.infoshare.jpa.screens.lanes.model.Lane;
+import pl.infoshare.jpa.screens.lanes.model.LaneRepository;
 import pl.infoshare.jpa.screens.model.Screen;
 import pl.infoshare.jpa.screens.model.ScreenRepository;
 
@@ -16,6 +18,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class ScreenController {
 
+    private final LaneRepository laneRepository;
     private final ASpotRepository aSpotRepository;
     private final ScreenRepository screenRepository;
     private final ASpotCreateService aSpotCreateService;
@@ -31,13 +34,33 @@ public class ScreenController {
         return screenRepository.save(screen);
     }
 
+    @PostMapping("/api/screens/{id}/lanes")
+    @Transactional
+    public Lane createLaneInScreen(@PathVariable Long id,
+                                     @RequestBody Lane lane) {
+        var screen = screenRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        lane.setScreen(screen);
+        return laneRepository.save(lane);
+    }
+
     @DeleteMapping("/api/screens/{id}")
     @Transactional
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteScreen(@PathVariable Long id) {
         var screen = screenRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        laneRepository.deleteAllByScreen(screen);
         screenRepository.delete(screen);
         aSpotRepository.delete(screen.getASpot());
+    }
+
+    @DeleteMapping("/api/screens/{id}/lanes/{laneId}")
+    @Transactional
+    public void deleteLane(@PathVariable("id") Long screenId,
+                           @PathVariable Long laneId) {
+        var screen = screenRepository.findById(screenId)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        screen.removeLane(laneId);
     }
 }
