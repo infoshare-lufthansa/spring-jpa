@@ -24,4 +24,3 @@ DELETE http://localhost:8080/api/movies/1
 
 ###
 DELETE http://localhost:8080/api/movies?genre=ACTION
-
