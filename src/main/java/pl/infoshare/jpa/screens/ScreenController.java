@@ -1,6 +1,8 @@
 package pl.infoshare.jpa.screens;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -8,6 +10,7 @@ import org.springframework.web.server.ResponseStatusException;
 import pl.infoshare.jpa.screens.aspots.ASpotCreateService;
 import pl.infoshare.jpa.screens.aspots.model.ASpotRepository;
 import pl.infoshare.jpa.screens.lanes.model.Lane;
+import pl.infoshare.jpa.screens.lanes.model.LaneOverview;
 import pl.infoshare.jpa.screens.lanes.model.LaneRepository;
 import pl.infoshare.jpa.screens.model.Screen;
 import pl.infoshare.jpa.screens.model.ScreenRepository;
@@ -22,6 +25,11 @@ public class ScreenController {
     private final ASpotRepository aSpotRepository;
     private final ScreenRepository screenRepository;
     private final ASpotCreateService aSpotCreateService;
+
+    @GetMapping("/api/screens/{id}/lanes")
+    public Page<LaneOverview> getLanes(@PathVariable("id") Long screenId, Pageable pageable) {
+        return laneRepository.findAllByScreenId(screenId, pageable);
+    }
 
     @PostMapping("/api/screens")
     @Transactional
