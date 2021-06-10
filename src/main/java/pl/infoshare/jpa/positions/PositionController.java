@@ -15,7 +15,7 @@ public class PositionController {
     private final PositionRepository positionRepository;
 
     @GetMapping("/api/positions")
-    public Page<Position> getPositions(@RequestParam String title, Pageable pageable) {
-        return positionRepository.findAllByTitleContaining(title, pageable);
+    public Page<Position> getPositions(PositionSearch search, Pageable pageable) {
+        return positionRepository.findAll(search.asSpecification(), pageable);
     }
 }
