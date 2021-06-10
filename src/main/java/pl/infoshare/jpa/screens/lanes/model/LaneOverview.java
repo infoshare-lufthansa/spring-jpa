@@ -1,6 +1,6 @@
 package pl.infoshare.jpa.screens.lanes.model;
 
-import pl.infoshare.jpa.movies.model.MovieOverview;
+import pl.infoshare.jpa.positions.movies.model.MovieOverview;
 
 import java.util.List;
 

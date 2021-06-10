@@ -5,7 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.server.ResponseStatusException;
-import pl.infoshare.jpa.movies.MovieRepository;
+import pl.infoshare.jpa.positions.movies.MovieRepository;
 import pl.infoshare.jpa.screens.aspots.model.ASpotRepository;
 
 @Component

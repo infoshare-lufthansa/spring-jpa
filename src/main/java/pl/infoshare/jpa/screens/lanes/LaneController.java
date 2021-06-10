@@ -5,8 +5,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
-import pl.infoshare.jpa.movies.MovieRepository;
-import pl.infoshare.jpa.movies.model.Movie;
+import pl.infoshare.jpa.positions.movies.MovieRepository;
+import pl.infoshare.jpa.positions.movies.model.Movie;
 import pl.infoshare.jpa.screens.lanes.model.AddMoviesToLaneRequest;
 import pl.infoshare.jpa.screens.lanes.model.AddMoviesToLaneResponse;
 import pl.infoshare.jpa.screens.lanes.model.LaneRepository;
@@ -39,7 +39,7 @@ public class LaneController {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
         var foundMovies = movieRepository.findAllById(addMoviesToLaneRequest.getMovieIds());
 
-        lane.setMovies(foundMovies);
+        lane.setPositions(foundMovies);
 
         var foundMovieIds = foundMovies.stream().map(Movie::getId).collect(Collectors.toList());
         var assignedIds = addMoviesToLaneRequest.getMovieIds().stream().filter(foundMovieIds::contains).collect(Collectors.toList());

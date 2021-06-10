@@ -2,7 +2,7 @@ package pl.infoshare.jpa.screens.aspots.model;
 
 import lombok.Getter;
 import lombok.Setter;
-import pl.infoshare.jpa.movies.model.Movie;
+import pl.infoshare.jpa.positions.movies.model.Movie;
 
 import javax.persistence.*;
 
