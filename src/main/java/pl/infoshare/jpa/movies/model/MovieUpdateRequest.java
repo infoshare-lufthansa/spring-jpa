@@ -1,7 +1,6 @@
-package pl.infoshare.jpa.positions.movies.model;
+package pl.infoshare.jpa.movies.model;
 
 import lombok.Value;
-import pl.infoshare.jpa.positions.model.Genre;
 
 import java.math.BigDecimal;
 import java.net.URL;

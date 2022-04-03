@@ -1,6 +1,4 @@
-package pl.infoshare.jpa.positions.movies.model;
-
-import pl.infoshare.jpa.positions.model.Genre;
+package pl.infoshare.jpa.movies.model;
 
 import java.net.URL;
 
