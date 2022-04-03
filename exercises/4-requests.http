@@ -1,64 +1,19 @@
-POST http://localhost:8080/api/a-spots
-Content-Type: application/json
-
-{
-  "size": "SMALL",
-  "movie": {
-    "id": 7
-  }
-}
+GET http://localhost:8080/api/movies?title=Quiet
 
 ###
-POST http://localhost:8080/api/a-spots
-Content-Type: application/json
-
-{
-  "size": "SMALL",
-  "movie": {
-    "id": 99
-  }
-}
+GET http://localhost:8080/api/movies?genre=THRILLER
 
 ###
-PUT http://localhost:8080/api/a-spots/11/movies/4
+GET http://localhost:8080/api/movies?minDate=2010-01-01
 
 ###
-POST http://localhost:8080/api/screens
-Content-Type: application/json
-
-{
-  "title": "Popular new hits",
-  "aspot": {
-    "id": 11
-  }
-}
+GET http://localhost:8080/api/movies?maxDate=2010-01-01
 
 ###
-POST http://localhost:8080/api/screens
-Content-Type: application/json
-
-{
-  "title": "Classic great movies",
-  "aspot": {
-    "size": "LARGE",
-    "movie": {
-      "id": 3
-    }
-  }
-}
+GET http://localhost:8080/api/movies?minScore=7.5
 
 ###
-POST http://localhost:8080/api/screens
-Content-Type: application/json
+GET http://localhost:8080/api/movies?maxScore=7.5
 
-{
-  "title": "Movies that never exists",
-  "aspot": {
-    "size": "LARGE",
-    "movie": {
-      "id": 99
-    }
-  }
-}
 ###
-DELETE http://localhost:8080/api/screens/12
+GET http://localhost:8080/api/movies?title=Quiet&genre=HORROR&maxScore=9.0&minScore=1.0&minDate=1900-01-01&maxDate=2021-01-01
